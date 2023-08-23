@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
+import MetaTrader5 as mt5
 
-def get(df, period=14):
+def get_rsi(df, period=14): #TODO rename function
     price_changes = df.diff().dropna()
     positive_changes = price_changes * 0
     negative_changes = positive_changes.copy()
@@ -19,7 +20,19 @@ def get(df, period=14):
     
     rsi = round(((100 - 100 / (1 + rs)).iloc[-1]), 2)
     return rsi
+    
+def get_rsi_df(mt5_conn, stocks_list, rsi_period, timeframe, date_from, num_candles_lookback): #TODO rename function
+    rsi_df = pd.DataFrame(columns=['STOCK', f'RSI {rsi_period}'])
 
-
+    for stock in stocks_list:
+        try:
+            rates = mt5_conn.copy_rates_from_pos(stock.strip(), timeframe, date_from, num_candles_lookback)
+            rates_df = pd.DataFrame(rates)
+            current_rsi = rsi(rates_df['close'], rsi_period)
+            rsi_df.loc[len(rsi_df)] = [stock, current_rsi]     
+        except:
+            continue
+    
+    return rsi_df
 
 
