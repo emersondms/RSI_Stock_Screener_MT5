@@ -17,7 +17,7 @@ rsi_df = pd.DataFrame(columns=['STOCK', f'RSI {RSI_PERIOD}'])
 
 for stock in stocks_list:
     try:
-        current_rsi = rsi.get_current_rsi_for_stock(mt5, stock, TIMEFRAME, DATE_FROM, NUM_CANDLES_LOOKBACK, RSI_PERIOD)
+        current_rsi = rsi.get_rsi_for_stock(mt5, stock, TIMEFRAME, DATE_FROM, NUM_CANDLES_LOOKBACK, RSI_PERIOD)
         rsi_df.loc[len(rsi_df)] = [stock, current_rsi]     
     except:
         continue
