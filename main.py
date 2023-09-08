@@ -14,7 +14,7 @@ stocks_list = pd.read_csv('stocks.txt', header=None)
 stocks_list = stocks_list.values.flatten().tolist()
     
 # TODO get from props file
-TIMEFRAME = mt5.TIMEFRAME_H1
+TIMEFRAME = mt5.TIMEFRAME_H1 #one-hour
 NUM_CANDLES_SAMPLING = 50
 RSI_PERIOD = 14
 RSI_OVERSOLD_LEVEL = 35
