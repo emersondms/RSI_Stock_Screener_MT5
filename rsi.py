@@ -33,7 +33,7 @@ def calculate_rsi(prices_df, rsi_period=14):
 
 def get_rsi_for_stock(mt5_conn, stock, timeframe, num_candles_sampling, rsi_period):
     """
-    Returns the Relative Strength Index (RSI) for a specific stock
+    Returns the Relative Strength Index (RSI) for a specific stock.
 
     Parameters:
     - mt5_conn (MetaTrader5 connection): A connection to MetaTrader 5 for data retrieval.
