@@ -15,7 +15,7 @@ stocks_list = stocks_list.values.flatten().tolist()
     
 # TODO get from props file
 TIMEFRAME = mt5.TIMEFRAME_H1
-NUM_CANDLES_LOOKBACK = 50
+NUM_CANDLES_SAMPLING = 50
 RSI_PERIOD = 14
 RSI_OVERSOLD_LEVEL = 35
 
@@ -26,8 +26,8 @@ def get_filled_rsi_df():
     # Fill the dataframe with stocks below RSI_OVERSOLD_LEVEL
     for stock in stocks_list:
         try:
-            current_rsi = rsi.get_rsi_for_stock(mt5, stock, TIMEFRAME, NUM_CANDLES_LOOKBACK, RSI_PERIOD)
-            if float(current_rsi <= RSI_OVERSOLD_LEVEL):
+            current_rsi = rsi.get_rsi_for_stock(mt5, stock, TIMEFRAME, NUM_CANDLES_SAMPLING, RSI_PERIOD)
+            if (float(current_rsi) <= RSI_OVERSOLD_LEVEL):
                 rsi_df.loc[len(rsi_df)] = [stock, current_rsi]     
         except:
             continue
