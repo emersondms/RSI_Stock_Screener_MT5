@@ -1,6 +1,7 @@
 import MetaTrader5 as mt5
 import pandas as pd
 import tkinter as tk
+from jproperties import Properties
 import rsi
 import gui
 
@@ -13,11 +14,16 @@ if not mt5.initialize():
 stocks_list = pd.read_csv('stocks.txt', header=None)
 stocks_list = stocks_list.values.flatten().tolist()
     
-# TODO get from props file
-TIMEFRAME = mt5.TIMEFRAME_H1 #one-hour
-NUM_CANDLES_SAMPLING = 50
-RSI_PERIOD = 14
-RSI_OVERSOLD_LEVEL = 35
+# load properties from file
+props = Properties()
+with open('strategy.properties', 'rb') as config_file:
+    props.load(config_file)
+
+TIMEFRAME = getattr(mt5, props.get("TIMEFRAME").data, None)
+print (TIMEFRAME)
+NUM_CANDLES_SAMPLING = int(props.get("NUM_CANDLES_SAMPLING ").data)
+RSI_PERIOD = int(props.get("RSI_PERIOD ").data)
+RSI_OVERSOLD_LEVEL = int(props.get("RSI_OVERSOLD_LEVEL ").data)
 
 # Returns a dataframe with STOCK|RSI information
 def get_filled_rsi_df():
