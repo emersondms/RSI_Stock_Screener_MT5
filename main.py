@@ -16,14 +16,13 @@ stocks_list = stocks_list.values.flatten().tolist()
     
 # load properties from file
 props = Properties()
-with open('strategy.properties', 'rb') as config_file:
+with open('screener.properties', 'rb') as config_file:
     props.load(config_file)
 
 TIMEFRAME = getattr(mt5, props.get("TIMEFRAME").data, None)
-print (TIMEFRAME)
-NUM_CANDLES_SAMPLING = int(props.get("NUM_CANDLES_SAMPLING ").data)
-RSI_PERIOD = int(props.get("RSI_PERIOD ").data)
-RSI_OVERSOLD_LEVEL = int(props.get("RSI_OVERSOLD_LEVEL ").data)
+NUM_CANDLES_SAMPLING = int(props.get("NUM_CANDLES_SAMPLING").data)
+RSI_PERIOD = int(props.get("RSI_PERIOD").data)
+RSI_OVERSOLD_LEVEL = int(props.get("RSI_OVERSOLD_LEVEL").data)
 
 # Returns a dataframe with STOCK|RSI information
 def get_filled_rsi_df():
