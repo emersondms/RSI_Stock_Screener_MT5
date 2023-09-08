@@ -27,6 +27,13 @@ class Window:
         self.insert_data(df)
         
     def insert_data(self, df):
+        """
+        Insert data from a DataFrame into a Tkinter Treeview widget.
+    
+        Parameters:
+        - df (pd.DataFrame): The DataFrame containing the data to be inserted.
+        """
+        
         self.tree.delete(*self.tree.get_children())
   
         # Convert DataFrame columns to numeric IDs
