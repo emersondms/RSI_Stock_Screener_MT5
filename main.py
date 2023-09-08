@@ -19,14 +19,15 @@ props = Properties()
 with open('screener.properties', 'rb') as config_file:
     props.load(config_file)
 
-TIMEFRAME = getattr(mt5, props.get("TIMEFRAME").data, None)
+RAW_TIMEFRAME = props.get("TIMEFRAME").data
+TIMEFRAME = getattr(mt5, RAW_TIMEFRAME, None)
 NUM_CANDLES_SAMPLING = int(props.get("NUM_CANDLES_SAMPLING").data)
 RSI_PERIOD = int(props.get("RSI_PERIOD").data)
 RSI_OVERSOLD_LEVEL = int(props.get("RSI_OVERSOLD_LEVEL").data)
 
 # Returns a dataframe with STOCK|RSI information
 def get_filled_rsi_df():
-    rsi_df = pd.DataFrame(columns=['STOCK', f'RSI {RSI_PERIOD}'])
+    rsi_df = pd.DataFrame(columns=['STOCK', f'RSI {RSI_PERIOD} {RAW_TIMEFRAME}'])
 
     # Fill the dataframe with stocks below RSI_OVERSOLD_LEVEL
     for stock in stocks_list:
