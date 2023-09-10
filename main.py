@@ -27,7 +27,7 @@ RSI_OVERSOLD_LEVEL = int(props.get("RSI_OVERSOLD_LEVEL").data)
 
 # Returns a dataframe with STOCK|RSI information
 def get_filled_rsi_df():
-    rsi_df = pd.DataFrame(columns=['STOCK', f'RSI {RSI_PERIOD} {RAW_TIMEFRAME}'])
+    rsi_df = pd.DataFrame(columns=['STOCK', f'RSI_{RSI_PERIOD} {RAW_TIMEFRAME}'])
 
     # Fill the dataframe with stocks below RSI_OVERSOLD_LEVEL
     for stock in stocks_list:
