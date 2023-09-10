@@ -1,5 +1,5 @@
 # RSI_Stock_Screener_MT5
-GUI-Driven Oversold RSI Stock Screener for MetaTrader 5
+GUI-Driven Oversold RSI Stock Screener for the MetaTrader 5 trading platform
 
 ## Overview
 
