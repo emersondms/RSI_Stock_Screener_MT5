@@ -2,9 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 class Window:
-    tree = None
-    refresh_button = None
-    
+
     def __init__(self, root, df):
         self.root = root
         self.root.title("RSI Stock Screener")
